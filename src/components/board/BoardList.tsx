@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Board } from "../../App";
 import styles from "../../Shop.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import Paging from "../common/Pagination";
 
 interface Props {
   readonly boards: Board[];
@@ -11,6 +12,10 @@ interface Props {
   readonly isMember: boolean;
 }
 const BoardList = ({ boards, isLoading, isMember }: Props) => {
+  const [limit, setLimit] = useState(10);
+  const [page, setPage] = useState(1);
+  const offset = (page - 1) * limit; //n번째 페이지 첫 게시물의 위치
+
   return (
     <div className={styles.centered}>
       <div className={styles.shop_table}>
@@ -75,6 +80,12 @@ const BoardList = ({ boards, isLoading, isMember }: Props) => {
           </>
         )}
       </div>
+      <Paging
+        total={boards.length}
+        limit={limit}
+        page={page}
+        setPage={setPage}
+      />
     </div>
   );
 };

@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "../../Shop.module.css";
 import { Notice } from "../../App";
+import Paging from "../common/Pagination";
 
 interface Props {
   readonly notices: Notice[];
@@ -26,6 +27,10 @@ function NoticeList({
   allDelClick,
   selectedDelClick,
 }: Props) {
+  const [limit, setLimit] = useState(10);
+  const [page, setPage] = useState(1);
+  const offset = (page - 1) * limit; //n번째 페이지 첫 게시물의 위치
+
   return (
     <div className={styles.centered}>
       <div className={styles.shop_table}>
@@ -88,7 +93,7 @@ function NoticeList({
                   </tr>
                 )}
                 {!!notices.length &&
-                  notices.map((notice) => (
+                  notices.slice(offset, offset + limit).map((notice) => (
                     <tr key={notice.noticeNo}>
                       {isAdmin && (
                         <td>
@@ -156,6 +161,13 @@ function NoticeList({
           </>
         )}
       </div>
+
+      <Paging
+        total={notices.length}
+        limit={limit}
+        page={page}
+        setPage={setPage}
+      />
     </div>
   );
 }

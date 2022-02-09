@@ -6,7 +6,6 @@ import { isAdmin as hasRoleAdmin } from "../../modules/selector";
 import { RootState } from "../../modules";
 import { useHistory } from "react-router-dom";
 import * as api from "../../lib/api";
-// import Paging from "../../components/common/Pagination";
 
 const NoticeListContainer = () => {
   const dispatch = useDispatch();
@@ -60,8 +59,9 @@ const NoticeListContainer = () => {
     }
   };
 
-  //체크박스선텍식제
+  //체크박스 선텍식제
   const selectedDelClick = () => {
+    console.log(checkItems);
     if (window.confirm("선택 삭제 하시겠습니까?")) {
       if (checkItems.length === 0) {
         alert("선택된 공지가 없습니다.");
