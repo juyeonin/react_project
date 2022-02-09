@@ -33,10 +33,6 @@
   padding: 2px 4px;
   margin: 6px 8px;
 }
-.nav_bar_menu li:hover {
-  background: linear-gradient(to top, rgb(173, 173, 173), white);
-  border-radius: 4px;
-}
 .nav_bar_menu a {
   color: rgb(39, 39, 39);
   text-decoration: none;

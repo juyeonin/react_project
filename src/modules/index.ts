@@ -46,10 +46,4 @@ const rootReducer = combineReducers({
   userItem
 });
 
-// export function* rootSaga() {
-//   yield all([
-//     codeGroupSaga(),
-//   ]);
-// }
-
 export default rootReducer;

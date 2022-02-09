@@ -12,6 +12,8 @@ interface Props {
   readonly myInfo: MyInfo | null;
   readonly addComment: (comment: string, commentWriter: string) => void;
   readonly comments: Comment[];
+  commentWriter: string;
+  setCommentWriter: (writer: string) => void;
 }
 
 const BoardRead = ({
@@ -22,9 +24,10 @@ const BoardRead = ({
   myInfo,
   addComment,
   comments,
+  commentWriter,
+  setCommentWriter,
 }: Props) => {
   const [comment, setComment] = useState("");
-  const [commentWriter, setCommentWriter] = useState("Anonymous");
 
   let isOwn = false;
   if (myInfo && board) {
@@ -51,7 +54,11 @@ const BoardRead = ({
   const handleSubmitComment = (comment: string, commentWriter: string) => {
     addComment(comment, commentWriter);
     setComment("");
-    setCommentWriter("Anonymous");
+    if (myInfo) {
+      setCommentWriter(myInfo.userName);
+    } else {
+      setCommentWriter("Anonymous");
+    }
   };
 
   return (

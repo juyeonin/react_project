@@ -16,6 +16,7 @@ const BoardReadContainer = ({ boardNo }: Props) => {
   const history = useHistory();
 
   const [comments, setComments] = useState<Comment[]>([]);
+  const [commentWriter, setCommentWriter] = useState<string>("Anonymous");
 
   const { board, isLoading, myInfo } = useSelector(
     ({ board, loading, auth }: RootState) => ({
@@ -27,7 +28,10 @@ const BoardReadContainer = ({ boardNo }: Props) => {
 
   useEffect(() => {
     dispatch(fetchOneThunk(boardNo));
-  }, [dispatch, boardNo]);
+    if (myInfo) {
+      setCommentWriter(myInfo.userName);
+    }
+  }, [dispatch, boardNo, myInfo]);
 
   const onRemove = async () => {
     try {
@@ -72,6 +76,8 @@ const BoardReadContainer = ({ boardNo }: Props) => {
       myInfo={myInfo}
       addComment={addComment}
       comments={comments}
+      commentWriter={commentWriter}
+      setCommentWriter={setCommentWriter}
     />
   );
 };

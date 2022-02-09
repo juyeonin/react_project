@@ -12,7 +12,7 @@ interface Props {
   readonly isMember: boolean;
 }
 const BoardList = ({ boards, isLoading, isMember }: Props) => {
-  const [limit, setLimit] = useState(10);
+  const limit: number = 10;
   const [page, setPage] = useState(1);
   const offset = (page - 1) * limit; //n번째 페이지 첫 게시물의 위치
 
@@ -47,7 +47,7 @@ const BoardList = ({ boards, isLoading, isMember }: Props) => {
                   </tr>
                 )}
                 {!!boards.length &&
-                  boards.map((board) => (
+                  boards.slice(offset, offset + limit).map((board) => (
                     <tr key={board.boardNo}>
                       <td>{board.boardNo}</td>
                       <td>

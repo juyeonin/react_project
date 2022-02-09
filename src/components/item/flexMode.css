@@ -1,0 +1,88 @@
+.listTable {
+  width: 70%;
+  margin: 10px;
+  text-align: center;
+  align-items: center;
+}
+.listTable.active {
+  display: none;
+}
+
+.flexTable {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 4px 6px;
+}
+.flexTable.active {
+  display: none;
+}
+
+.flexList {
+  width: 33.3%;
+}
+
+.flexListImage,
+.flexListName,
+.flexListPrice {
+  text-align: center;
+}
+
+.flexListImage {
+  border-radius: 10px;
+}
+
+/* 반응형 wep page */
+@media screen and (max-width: 815px) {
+  .flexList {
+    width: 50%;
+    padding-top: 10px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .flexList {
+    width: 100%;
+    padding-top: 10px;
+  }
+}
+
+.listFlexButton {
+  border: none;
+  background-color: white;
+  color: rgb(145, 0, 182);
+  border-radius: 5px;
+  margin: 0 15% 10px auto;
+}
+
+.listFlexButton svg {
+  font-size: 25px;
+}
+
+.listFlexButtonHover {
+  visibility: hidden;
+  background-color: rgb(46, 46, 46);
+  opacity: 0.9;
+  color: #ffffff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 3px;
+  position: absolute;
+  font-size: 13px;
+  z-index: 1;
+  top: 4%;
+  right: 11.7%;
+}
+.listFlexButtonHover::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: rgb(46, 46, 46) transparent transparent transparent;
+}
+
+.listFlexButton:hover .listFlexButtonHover {
+  visibility: visible;
+}
