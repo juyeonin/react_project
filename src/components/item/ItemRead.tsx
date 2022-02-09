@@ -89,7 +89,11 @@ const ItemRead = ({
                   <input
                     type="text"
                     className="form-control-plaintext"
-                    value={item.price + "원"}
+                    value={
+                      item.price
+                        .toString()
+                        .replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "원"
+                    }
                     readOnly
                   />
                 </td>

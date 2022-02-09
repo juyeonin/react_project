@@ -83,7 +83,12 @@ const ItemList = ({ items, isLoading, isAdmin }: Props) => {
                           {item.itemName}
                         </Link>
                       </td>
-                      <td>{item.price}원</td>
+                      <td>
+                        {item.price
+                          .toString()
+                          .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                        원
+                      </td>
                     </tr>
                   ))}
               </tbody>
@@ -103,7 +108,9 @@ const ItemList = ({ items, isLoading, isAdmin }: Props) => {
                           "&timestamp=" +
                           new Date().getTime()
                         }
-                        alt=""
+                        alt={item.itemName}
+                        width="210px"
+                        height="200px"
                       />
                     </Link>
                   </div>
@@ -113,7 +120,13 @@ const ItemList = ({ items, isLoading, isAdmin }: Props) => {
                       {item.itemName}
                     </Link>
                   </div>
-                  <div className="flexListPrice">가격 : {item.price}원</div>
+                  <div className="flexListPrice">
+                    가격 :&nbsp;
+                    {item.price
+                      .toString()
+                      .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                    원
+                  </div>
                 </div>
               ))}
           </div>

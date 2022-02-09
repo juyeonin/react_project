@@ -84,7 +84,7 @@ const NoticeListContainer = () => {
   const handleAllCheck = (checked: boolean) => {
     if (checked) {
       const idArray: string[] = [];
-      // 전체 체크 박스가 체크 되면 id를 가진 모든 elements를 배열에 넣어
+      // 전체 체크 박스가 체크 되면 배열에 넣어
       notices.map((notice) => idArray.push(notice.noticeNo));
       setCheckItems(idArray);
     } else {

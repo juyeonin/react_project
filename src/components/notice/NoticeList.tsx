@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "../../Shop.module.css";
 import { Notice } from "../../App";
 import Paging from "../common/Pagination";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFolder } from "@fortawesome/free-solid-svg-icons";
 
 interface Props {
   readonly notices: Notice[];
@@ -53,7 +55,7 @@ function NoticeList({
           </table>
         )}
         {!isLoading && notices && (
-          <>
+          <div>
             {isAdmin && (
               <Link
                 className="btn btn-outline-secondary btn-sm"
@@ -158,10 +160,9 @@ function NoticeList({
                 </button>
               </div>
             )}
-          </>
+          </div>
         )}
       </div>
-
       <Paging
         total={notices.length}
         limit={limit}

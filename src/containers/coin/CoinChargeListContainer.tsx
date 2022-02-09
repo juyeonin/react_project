@@ -14,6 +14,7 @@ const CoinChargeListContainer = () => {
     })
   );
 
+  console.log(isLoading);
   useEffect(() => {
     dispatch(fetchChargeListThunk());
   }, [dispatch]);

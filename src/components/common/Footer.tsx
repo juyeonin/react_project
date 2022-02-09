@@ -7,7 +7,7 @@ function Footer() {
     <div className={`${styles.align_center} ${styles.footer}`}>
       <strong>Footer</strong>
       <br />
-      <Link to="/" style={{ float: "right" }}>
+      <Link to="/" style={{ float: "right", paddingRight: "10px" }}>
         홈 바로가기
       </Link>
     </div>

@@ -13,7 +13,7 @@ export const fetchChargeListSuccess = createAction(FETCH_CHARGE_LIST_SUCCESS, (d
 export const fetchChargeListFailure = createAction(FETCH_CHARGE_LIST_FAILURE, (err:any)=>err);
 
 export const fetchChargeListThunk = () => async(dispath:Dispatch) => {
-    dispath(startLoading("FETCH_CHARGE_LIST"));
+    dispath(startLoading("FETCH_LIST"));
     try {
         const response = await api.fetchChargeCoinList();
         dispath(fetchChargeListSuccess(response.data));
@@ -21,7 +21,7 @@ export const fetchChargeListThunk = () => async(dispath:Dispatch) => {
     }catch (e) {
         dispath(fetchChargeListFailure(e));
     }
-    dispath(endLoading("FETCH_CHARGE_LIST"));
+    dispath(endLoading("FETCH_LIST"));
 };
 
 export const FETCH_PAY_LIST = "coin/FETCH_PAY_LIST";
