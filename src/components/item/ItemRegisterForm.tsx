@@ -1,8 +1,8 @@
-import React, { useCallback, useMemo, useRef, useState } from "react";
-import { Link } from "react-router-dom";
-import styles from "../../Shop.module.css";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
+import React, { useCallback, useMemo, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
+import styles from '../../Shop.module.css';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 interface Props {
   readonly onRegister: (
@@ -10,14 +10,14 @@ interface Props {
     price: number,
     description: string,
     file: File,
-    previewFile: File
+    previewFile: File,
   ) => void;
 }
 
 const ItemRegisterForm = ({ onRegister }: Props) => {
-  const [itemName, setItemName] = useState("");
+  const [itemName, setItemName] = useState('');
   const [price, setPrice] = useState(0);
-  const [description, setDescription] = useState("");
+  const [description, setDescription] = useState('');
   const [file, setFile] = useState<File>();
   const [previewFile, setPreviewFile] = useState<File>();
   const quillRef = useRef<ReactQuill>();
@@ -27,32 +27,32 @@ const ItemRegisterForm = ({ onRegister }: Props) => {
       toolbar: {
         // 툴바에 넣을 기능
         container: [
-          ["bold", "italic", "underline", "strike", "blockquote"],
-          [{ size: ["small", false, "large", "huge"] }, { color: [] }],
+          ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+          [{ size: ['small', false, 'large', 'huge'] }, { color: [] }],
           [
-            { list: "ordered" },
-            { list: "bullet" },
-            { indent: "-1" },
-            { indent: "+1" },
+            { list: 'ordered' },
+            { list: 'bullet' },
+            { indent: '-1' },
+            { indent: '+1' },
             { align: [] },
           ],
         ],
       },
     }),
-    []
+    [],
   );
 
   const handleChangeItemName = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       setItemName(e.target.value);
     },
-    []
+    [],
   );
   const handleChangePrice = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       setPrice(Number.parseInt(e.target.value));
     },
-    []
+    [],
   );
   // const handleChangeDescription = useCallback((e:React.ChangeEvent<HTMLTextAreaElement>)=> {
   //     setDescription(e.target.value);
@@ -63,7 +63,7 @@ const ItemRegisterForm = ({ onRegister }: Props) => {
         setFile(e.target.files[0]);
       }
     },
-    []
+    [],
   );
   const handleChangePreviewFile = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -71,11 +71,8 @@ const ItemRegisterForm = ({ onRegister }: Props) => {
         setPreviewFile(e.target.files[0]);
       }
     },
-    []
+    [],
   );
-  const handleRemoveFile = useCallback(() => {
-    setFile(undefined);
-  }, []);
 
   const handleSubmit = useCallback(
     (e: React.FormEvent<HTMLFormElement>) => {
@@ -85,7 +82,7 @@ const ItemRegisterForm = ({ onRegister }: Props) => {
         onRegister(itemName, price, description, file, previewFile);
       }
     },
-    [itemName, price, description, file, previewFile, onRegister]
+    [itemName, price, description, file, previewFile, onRegister],
   );
 
   return (
@@ -128,7 +125,7 @@ const ItemRegisterForm = ({ onRegister }: Props) => {
           <label htmlFor="formFile" className="form-label">
             <strong>상품파일</strong>
           </label>
-          <div className="col-sm-10" style={{ display: "inlineFlex" }}>
+          <div className="col-sm-10" style={{ display: 'inlineFlex' }}>
             <label>
               <input
                 type="file"
@@ -143,7 +140,7 @@ const ItemRegisterForm = ({ onRegister }: Props) => {
           <label htmlFor="formPreviewFile" className="form-label">
             <strong>미리보기파일</strong>
           </label>
-          <div className="col-sm-10" style={{ display: "inlineFlex" }}>
+          <div className="col-sm-10" style={{ display: 'inlineFlex' }}>
             <label>
               <input
                 type="file"
@@ -167,13 +164,13 @@ const ItemRegisterForm = ({ onRegister }: Props) => {
             value={description}
             onChange={setDescription}
             modules={modules}
-            style={{ minHeight: "300px", marginBottom: "6%" }}
+            style={{ minHeight: '300px', marginBottom: '6%' }}
             theme="snow"
             placeholder="내용을 입력해주세요."
           />
         </div>
 
-        <div className={styles.align_center} style={{ marginBottom: "50px" }}>
+        <div className={styles.align_center} style={{ marginBottom: '50px' }}>
           <button className="btn btn-dark btn-sm" type="submit">
             등록
           </button>

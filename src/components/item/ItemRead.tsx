@@ -1,7 +1,7 @@
-import React, { useRef } from "react";
-import { Link } from "react-router-dom";
-import { Item } from "../../App";
-import styles from "../../Shop.module.css";
+import React, { useRef } from 'react';
+import { Link } from 'react-router-dom';
+import { Item } from '../../App';
+import styles from '../../Shop.module.css';
 
 interface Props {
   readonly item: Item | null;
@@ -22,7 +22,7 @@ const ItemRead = ({
 }: Props): JSX.Element => {
   const previewUrl = () => {
     return (
-      "/items/preview?itemId=" + itemId + "&timestamp=" + new Date().getTime()
+      '/items/preview?itemId=' + itemId + '&timestamp=' + new Date().getTime()
     );
   };
 
@@ -30,16 +30,16 @@ const ItemRead = ({
 
   const onCopy = () => {
     copyRef.current?.select();
-    document.execCommand("copy");
+    document.execCommand('copy');
 
-    alert("클립보드에 복사됨");
+    alert('클립보드에 복사됨');
   };
 
   return (
     <div className={styles.centered}>
       <br />
       <h2>상품 상세보기</h2>
-      {isLoading && "로딩중.."}
+      {isLoading && '로딩중..'}
       {!isLoading && item && (
         <>
           <table>
@@ -50,9 +50,9 @@ const ItemRead = ({
                   <input
                     type="text"
                     className="form-control-plaintext"
-                    value={"No." + item.itemId}
+                    value={'No.' + item.itemId}
                     readOnly
-                    style={{ fontWeight: "bold" }}
+                    style={{ fontWeight: 'bold' }}
                   />
                 </td>
               </tr>
@@ -62,8 +62,8 @@ const ItemRead = ({
                   <input
                     style={{
                       marginRight: 0,
-                      display: "inline-block",
-                      width: "auto",
+                      display: 'inline-block',
+                      width: 'auto',
                     }}
                     type="text"
                     className="form-control-plaintext"
@@ -74,9 +74,9 @@ const ItemRead = ({
                   <button
                     onClick={onCopy}
                     style={{
-                      border: "none",
-                      backgroundColor: "white",
-                      fontWeight: "600",
+                      border: 'none',
+                      backgroundColor: 'white',
+                      fontWeight: '600',
                     }}
                   >
                     복사
@@ -92,7 +92,7 @@ const ItemRead = ({
                     value={
                       item.price
                         .toString()
-                        .replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "원"
+                        .replace(/\B(?=(\d{3})+(?!\d))/g, ',') + '원'
                     }
                     readOnly
                   />
@@ -106,7 +106,7 @@ const ItemRead = ({
               </tr>
               <tr>
                 <td colSpan={2}>
-                  <p style={{ textAlign: "center" }}>
+                  <p style={{ textAlign: 'center' }}>
                     <strong>====================</strong>
                   </p>
                 </td>
@@ -119,7 +119,7 @@ const ItemRead = ({
               </tr>
             </tbody>
           </table>
-          <div className={styles.align_center} style={{ marginBottom: "50px" }}>
+          <div className={styles.align_center} style={{ marginBottom: '50px' }}>
             {isAdmin && (
               <>
                 <Link

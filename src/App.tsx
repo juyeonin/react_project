@@ -1,44 +1,49 @@
-import React from "react";
-import { Route } from "react-router-dom";
-import HomePage from "./pages/HomePage";
-import SignInPage from "./pages/auth/SignInPage";
-import AdminSetupPage from "./pages/member/AdminSetupPage";
+import React from 'react';
+import { Route } from 'react-router-dom';
+import HomePage from './pages/HomePage';
+import SignInPage from './pages/auth/SignInPage';
+import AdminSetupPage from './pages/member/AdminSetupPage';
 
-import CodeGroupListPage from "./pages/codegroup/CodeGroupListPage";
-import CodeGroupRegisterPage from "./pages/codegroup/CodeGroupRegisterPage";
-import CodeGroupModifyPage from "./pages/codegroup/CodeGroupModifyPage";
-import CodeGroupReadPage from "./pages/codegroup/CodeGroupReadPage";
+import CodeGroupListPage from './pages/codegroup/CodeGroupListPage';
+import CodeGroupRegisterPage from './pages/codegroup/CodeGroupRegisterPage';
+import CodeGroupModifyPage from './pages/codegroup/CodeGroupModifyPage';
+import CodeGroupReadPage from './pages/codegroup/CodeGroupReadPage';
 
-import CodeDetailListPage from "./pages/codedetail/CodeDetailListPage";
-import CodeDetailModifyPage from "./pages/codedetail/CodeDetailModifyPage";
-import CodeDetailReadPage from "./pages/codedetail/CodeDetailReadPage";
-import CodeDetailRegisterPage from "./pages/codedetail/CodeDetailRegisterPage";
+import CodeDetailListPage from './pages/codedetail/CodeDetailListPage';
+import CodeDetailModifyPage from './pages/codedetail/CodeDetailModifyPage';
+import CodeDetailReadPage from './pages/codedetail/CodeDetailReadPage';
+import CodeDetailRegisterPage from './pages/codedetail/CodeDetailRegisterPage';
 
-import SignUpPage from "./pages/auth/SignUpPage";
-import MemberListPage from "./pages/member/MemberListPage";
-import MemberRegisterPage from "./pages/member/MemberRegisterPage";
+import SignUpPage from './pages/auth/SignUpPage';
+import MemberListPage from './pages/member/MemberListPage';
+import MemberRegisterPage from './pages/member/MemberRegisterPage';
 
-import BoardRegisterPage from "./pages/board/BoardRegisterPage";
-import BoardListPage from "./pages/board/BoardListPage";
-import BoardReadPage from "./pages/board/BoardReadPage";
-import BoardModifyPage from "./pages/board/BoardModifyPage";
+import BoardRegisterPage from './pages/board/BoardRegisterPage';
+import BoardListPage from './pages/board/BoardListPage';
+import BoardReadPage from './pages/board/BoardReadPage';
+import BoardModifyPage from './pages/board/BoardModifyPage';
 
-import NoticeListPage from "./pages/notice/NoticeListPage";
-import NoticeRegisterPage from "./pages/notice/NoticeRegisterPage";
-import NoticeModifyPage from "./pages/notice/NoticeModifyPage";
-import NoticeReadPage from "./pages/notice/NoticeReadPage";
+import NoticeListPage from './pages/notice/NoticeListPage';
+import NoticeRegisterPage from './pages/notice/NoticeRegisterPage';
+import NoticeModifyPage from './pages/notice/NoticeModifyPage';
+import NoticeReadPage from './pages/notice/NoticeReadPage';
 
-import ItemRegisterPage from "./pages/item/ItemRegisterPage";
-import ItemListPage from "./pages/item/ItemListPage";
-import ItemReadPage from "./pages/item/ItemReadPage";
-import ItemModifyPage from "./pages/item/ItemModifyPage";
+import ItemRegisterPage from './pages/item/ItemRegisterPage';
+import ItemListPage from './pages/item/ItemListPage';
+import ItemReadPage from './pages/item/ItemReadPage';
+import ItemModifyPage from './pages/item/ItemModifyPage';
 
-import CoinChargeRegisterPage from "./pages/coin/CoinChargeRegisterPage";
-import CoinChargeListPage from "./pages/coin/CoinChargeListPage";
+import CoinChargeRegisterPage from './pages/coin/CoinChargeRegisterPage';
+import CoinChargeListPage from './pages/coin/CoinChargeListPage';
 
-import UserItemListPage from "./pages/userItem/UserItemListPage";
+import UserItemListPage from './pages/userItem/UserItemListPage';
 
-import CalendarPage from "./pages/calendar/CalendarPage";
+import CalendarPage from './pages/calendar/CalendarPage';
+
+import PdsListPage from './pages/pds/PdsListPage';
+import PdsRegisterPage from './pages/pds/PdsRegisterPage';
+import PdsModifyPage from './pages/pds/PdsModifyPage';
+import PdsReadPage from './pages/pds/PdsReadPage';
 
 export interface LoginInput {
   userId: string;
@@ -156,6 +161,18 @@ export interface Comment {
   readonly commentWriter: string;
   readonly content: string;
 }
+export interface Pds {
+  readonly itemId: string;
+  readonly itemName: string;
+  readonly description: string;
+  readonly viewCnt: number;
+}
+export interface ItemObject {
+  readonly itemId?: string;
+  readonly itemName: string;
+  readonly description: string;
+  readonly files: string[];
+}
 
 function App() {
   return (
@@ -208,7 +225,12 @@ function App() {
 
       <Route component={UserItemListPage} path="/userItem" exact />
 
-      <Route component={CalendarPage} path={"/calendar"} exact />
+      <Route component={CalendarPage} path={'/calendar'} exact />
+
+      <Route component={PdsListPage} path="/pds" exact />
+      <Route component={PdsRegisterPage} path="/pds/create" />
+      <Route component={PdsModifyPage} path="/pds/edit/:itemId" />
+      <Route component={PdsReadPage} path="/pds/read/:itemId" />
     </>
   );
 }

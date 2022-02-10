@@ -1,24 +1,26 @@
-import { combineReducers } from "redux";
-import auth from "./auth";
-import { AuthState } from "../modules/auth";
-import { CodeGroupState } from "../modules/codegroup";
-import { LoadingState } from "../modules/loading";
-import loading from "./loading";
-import codegroup from "./codegroup";
-import { CodeDetailState } from "../modules/codedetail";
-import codedetail from "./codedetail";
-import member from "./member";
-import { MemberState } from "../modules/member";
-import board from "./board";
-import { BoardState } from "../modules/board";
-import notice from "./notice";
-import { NoticeState } from "../modules/notice";
-import item from "./item";
-import { ItemState } from "../modules/item";
-import coin from "./coin";
-import { CoinState } from "../modules/coin";
-import { UserItemState } from "../modules/userItem";
-import userItem from "./userItem";
+import { combineReducers } from 'redux';
+import auth from './auth';
+import { AuthState } from '../modules/auth';
+import { CodeGroupState } from '../modules/codegroup';
+import { LoadingState } from '../modules/loading';
+import loading from './loading';
+import codegroup from './codegroup';
+import { CodeDetailState } from '../modules/codedetail';
+import codedetail from './codedetail';
+import member from './member';
+import { MemberState } from '../modules/member';
+import board from './board';
+import { BoardState } from '../modules/board';
+import notice from './notice';
+import { NoticeState } from '../modules/notice';
+import item from './item';
+import { ItemState } from '../modules/item';
+import coin from './coin';
+import { CoinState } from '../modules/coin';
+import { UserItemState } from '../modules/userItem';
+import userItem from './userItem';
+import pds from '../modules/pds';
+import { PdsState } from './pds';
 
 export interface RootState {
   auth: AuthState;
@@ -31,6 +33,7 @@ export interface RootState {
   item: ItemState;
   coin: CoinState;
   userItem: UserItemState;
+  pds: PdsState;
 }
 
 const rootReducer = combineReducers({
@@ -43,7 +46,8 @@ const rootReducer = combineReducers({
   notice,
   item,
   coin,
-  userItem
+  userItem,
+  pds,
 });
 
 export default rootReducer;
