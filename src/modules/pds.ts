@@ -5,6 +5,95 @@ import { Pds } from '../App';
 import { Dispatch } from 'redux';
 import { endLoading, startLoading } from './loading';
 
+//import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+
+export interface PdsState {
+  pdsItem: Pds | null;
+  pdsItems: Pds[];
+  attachments: string[];
+  error: any;
+}
+
+const initialState: PdsState = {
+  pdsItem: null,
+  pdsItems: [],
+  attachments: [],
+  error: null,
+};
+
+// reduxjs/toolkit 사용해서 redux 적용해보기 연습
+
+// export const fetchPdsList = createAsyncThunk(
+//   'pds/fetchPdsList',
+//   async (dispatch: Dispatch) => {
+//     dispatch(startLoading('FETCH_LIST'));
+//     try {
+//       const response = await api.fetchPdsList();
+//       console.log('================:response', response.data);
+//       dispatch(endLoading('FETCH_LIST'));
+//       return response.data;
+//     } catch (e) {
+//       dispatch(endLoading('FETCH_LIST'));
+//       return e;
+//     }
+//   },
+// );
+
+// export const fetchPdsOne = createAsyncThunk(
+//   'pds/fetchOneList',
+//   async (pds: { dispatch: Dispatch; itemId: string }) => {
+//     const { dispatch, itemId } = pds;
+//     dispatch(startLoading('FETCH_ONE'));
+//     try {
+//       const response = await api.fetchPds(itemId);
+//       console.log('================:response', response.data);
+//       dispatch(endLoading('FETCH_ONE'));
+//       return response.data;
+//     } catch (e) {
+//       dispatch(endLoading('FETCH_ONE'));
+//       return e;
+//     }
+//   },
+// );
+
+// export const fetchAttachList = createAsyncThunk(
+//   'pds/fetchOneList',
+//   async (pds: { dispatch: Dispatch; itemId: string }) => {
+//     const { dispatch, itemId } = pds;
+//     dispatch(startLoading('FETCH_LIST'));
+//     try {
+//       const response = await api.fetchAttachList(itemId);
+//       console.log('================:response', response.data);
+//       dispatch(endLoading('FETCH_LIST'));
+//       return response.data;
+//     } catch (e) {
+//       dispatch(endLoading('FETCH_LIST'));
+//       return e;
+//     }
+//   },
+// );
+
+// const pdsSlice = createSlice({
+//   name: 'pds',
+//   initialState,
+//   reducers: {},
+//   extraReducers: (builder) => {
+//     builder
+//       .addCase(fetchPdsList.fulfilled, (state, { payload }) => {
+//         console.log('================:payload', payload);
+//         state.pdsItems = payload;
+//       })
+//       .addCase(fetchPdsOne.fulfilled, (state, { payload }) => {
+//         console.log('================:payload', payload);
+//         state.pdsItem = payload;
+//       })
+//       .addCase(fetchAttachList.fulfilled, (state, { payload }) => {
+//         console.log('================:payload', payload);
+//         state.pdsItem = payload;
+//       });
+//   },
+// });
+
 export const FETCH_ONE = 'pds/FETCH_ONE';
 const FETCH_ONE_SUCCESS = 'pds/FETCH_ONE_SUCCESS';
 const FETCH_ONE_FAILURE = 'pds/FETCH_ONE_FAILURE';
@@ -69,20 +158,6 @@ export const fetchListThunk = () => async (dispath: Dispatch) => {
   dispath(endLoading('FETCH_LIST'));
 };
 
-export interface PdsState {
-  pdsItem: Pds | null;
-  pdsItems: Pds[];
-  attachments: string[];
-  error: any;
-}
-
-const initialState: PdsState = {
-  pdsItem: null,
-  pdsItems: [],
-  attachments: [],
-  error: null,
-};
-
 const pds = createReducer(initialState, {
   [FETCH_ONE]: (state) => ({
     ...state,
@@ -136,3 +211,8 @@ const pds = createReducer(initialState, {
 });
 
 export default pds;
+// export default pdsSlice.reducer;
+
+// export const pdsActions = {
+//   fetchPdsList,
+// };
