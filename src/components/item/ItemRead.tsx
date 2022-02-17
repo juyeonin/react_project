@@ -1,7 +1,8 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Item } from '../../App';
+import { Item, Tags } from '../../App';
 import styles from '../../Shop.module.css';
+import dummy from '../../lib/dummy';
 
 interface Props {
   readonly item: Item | null;
@@ -26,7 +27,10 @@ const ItemRead = ({
     );
   };
 
+  const { tags } = dummy;
+
   const copyRef = useRef<HTMLInputElement>(null);
+  const [tag, setTag] = useState<Tags[]>([]);
 
   const onCopy = () => {
     copyRef.current?.select();
@@ -34,6 +38,18 @@ const ItemRead = ({
 
     alert('클립보드에 복사됨');
   };
+
+  const handleTag = (tagId: string) => {
+    alert(tagId);
+  };
+  const handleDeleteTage = (tagId: string) => {
+    const newTag = tag.filter((x) => x.tagId !== tagId);
+    setTag(newTag);
+  }
+
+  useEffect(() => {
+    setTag([...tags]);
+  }, [setTag, tags]);
 
   return (
     <div className={styles.centered}>
@@ -115,6 +131,22 @@ const ItemRead = ({
                 <td>상품설명</td>
                 <td>
                   <pre dangerouslySetInnerHTML={{ __html: item.description }} />
+                </td>
+              </tr>
+              <tr>
+                <td>태그</td>
+                <td>
+                  {tag.map((t) => (
+                    <div>
+                      <li
+                        style={{ listStyle: 'none', cursor:"pointer", display:"inline-block" }}
+                        onClick={() => handleTag(t.tagId)}
+                      >
+                        {t.tag}
+                      </li>
+                      <button style={{marginLeft:"3px"}} onClick={() =>handleDeleteTage(t.tagId)}>X</button>
+                    </div>
+                  ))}
                 </td>
               </tr>
             </tbody>

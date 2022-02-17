@@ -174,6 +174,11 @@ export interface ItemObject {
   readonly files: string[];
 }
 
+export interface Tags {
+  readonly tagId: string;
+  readonly tag: string;
+}
+
 function App() {
   return (
     <>

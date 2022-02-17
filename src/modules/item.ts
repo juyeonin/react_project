@@ -4,6 +4,8 @@ import { startLoading, endLoading } from "./loading";
 import * as api from "../lib/api";
 import { Dispatch } from "redux";
 import { Item } from "../App";
+//import dummy from '../lib/dummy';
+
 
 export const FETCH_ONE = "item/FETCH_ONE";
 const FETCH_ONE_SUCCESS = "item/FETCH_ONE_SUCCESS";
