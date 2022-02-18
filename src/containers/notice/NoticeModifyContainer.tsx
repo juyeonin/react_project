@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import NoticeModifyForm from "../../components/notice/NoticeModifyForm";
 import * as api from "../../lib/api";
-import { fetchOneThunk } from "../../modules/notice";
+import { noticesActions } from "../../modules/notice";
 import { useHistory } from "react-router-dom";
 import { RootState } from "../../modules";
 
@@ -45,7 +45,7 @@ const NoticeModifyContainer = ({ noticeNo }: Props) => {
   };
 
   useEffect(() => {
-    dispatch(fetchOneThunk(noticeNo));
+    dispatch(noticesActions.fetchOne({dispatch, noticeNo}));
   }, [dispatch, noticeNo]);
 
   return (

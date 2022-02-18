@@ -3,11 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import PdsModifyForm from '../../components/pds/PdsModifyForm';
 import * as api from '../../lib/api';
 import {
-  fetchOneThunk,
-  addAttach,
-  removeAttach,
-  fetchAttachList,
-  resetAttach,
+  pdsActions
 } from '../../modules/pds';
 import { useHistory } from 'react-router-dom';
 import { RootState } from '../../modules';
@@ -63,7 +59,7 @@ const PdsModifyContainer = ({ itemId }: Props) => {
   };
 
   useEffect(() => {
-    dispatch(fetchOneThunk(itemId));
+    dispatch(pdsActions.fetchPdsOne({dispatch, itemId}));
   }, [dispatch, itemId]);
 
   const onAddAttach = async (file: File) => {
@@ -75,7 +71,7 @@ const PdsModifyContainer = ({ itemId }: Props) => {
       const response = await api.addAttach(formData);
       const attach = response.data;
 
-      dispatch(addAttach(attach));
+      dispatch(pdsActions.add(attach));
     } catch (e: any) {
       if (e.response.status === 400) {
         alert('잘못된 요청입니다.');
@@ -92,14 +88,14 @@ const PdsModifyContainer = ({ itemId }: Props) => {
   };
 
   const onRemoveAttach = (index: number) => {
-    dispatch(removeAttach(index));
+    dispatch(pdsActions.remove(index));
   };
 
   const getAttachList = useCallback(async () => {
     try {
       const response = await api.fetchAttachList(itemId);
 
-      dispatch(fetchAttachList(response.data));
+      dispatch(pdsActions.attachList(response.data));
     } catch (e) {
       throw e;
     }
@@ -109,7 +105,7 @@ const PdsModifyContainer = ({ itemId }: Props) => {
     getAttachList();
 
     return () => {
-      dispatch(resetAttach());
+      dispatch(pdsActions.reset());
     };
   }, [dispatch, getAttachList]);
 

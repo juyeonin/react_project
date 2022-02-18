@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PdsRegisterForm from '../../components/pds/PdsRegisterForm';
 import * as api from '../../lib/api';
-import { addAttach, removeAttach } from '../../modules/pds';
+import { pdsActions } from '../../modules/pds';
 import { useHistory } from 'react-router-dom';
 import { RootState } from '../../modules';
 import { ItemObject } from '../../App';
@@ -53,7 +53,7 @@ const PdsRegisterContainer = () => {
       const response = await api.addAttach(formData);
       const attach = response.data;
       console.log(attach);
-      dispatch(addAttach(attach));
+      dispatch(pdsActions.add(attach));
     } catch (e: any) {
       if (e.response.status === 400) {
         alert('잘못된 요청입니다.');
@@ -70,7 +70,7 @@ const PdsRegisterContainer = () => {
   };
 
   const onRemoveAttach = (index: number) => {
-    dispatch(removeAttach(index));
+    dispatch(pdsActions.remove(index));
   };
 
   return (

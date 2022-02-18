@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PdsList from '../../components/pds/PdsList';
-import { fetchListThunk } from '../../modules/pds';
+import { pdsActions } from '../../modules/pds';
 import { isAdmin as hasRoleAdmin } from '../../modules/selector';
 import { RootState } from '../../modules';
 
@@ -15,7 +15,7 @@ const PdsListContainer = () => {
   }));
 
   useEffect(() => {
-    dispatch(fetchListThunk());
+    dispatch(pdsActions.fetchPdsList(dispatch));
   }, [dispatch]);
 
   return (

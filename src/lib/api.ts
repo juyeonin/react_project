@@ -71,8 +71,7 @@ export const writeBoard = (title: string, content: string) =>
 export const removeBoard = (boardNo: string, writer: string) =>
   client.delete(`/boards/${boardNo}?writer=${writer}`);
 
-export const fetchNotice = (noticeNo: string) =>
-  client.get(`/notices/${noticeNo}`);
+export const fetchNotice = (noticeNo: string) => client.get(`/notices/${noticeNo}`);
 export const fetchNoticeList = () => client.get('/notices');
 export const modifyNotice = (
   noticeNo: string,

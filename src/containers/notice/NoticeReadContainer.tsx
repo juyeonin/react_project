@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import NoticeRead from "../../components/notice/NoticeRead";
-import { fetchOneThunk } from "../../modules/notice";
+import { noticesActions } from "../../modules/notice";
 import * as api from "../../lib/api";
 import { isAdmin as hasRoleAdmin } from "../../modules/selector";
 import { useHistory } from "react-router-dom";
@@ -23,7 +23,7 @@ const NoticeReadContainer = ({ noticeNo }: Props) => {
   }));
 
   useEffect(() => {
-    dispatch(fetchOneThunk(noticeNo));
+    dispatch(noticesActions.fetchOne({dispatch, noticeNo}));
   }, [dispatch, noticeNo]);
 
   const onRemove = async () => {

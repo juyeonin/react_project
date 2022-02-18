@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import NoticeList from "../../components/notice/NoticeList";
-import { fetchListThunk } from "../../modules/notice";
+import { noticesActions } from "../../modules/notice";
 import { isAdmin as hasRoleAdmin } from "../../modules/selector";
 import { RootState } from "../../modules";
 import { useHistory } from "react-router-dom";
@@ -103,7 +103,7 @@ const NoticeListContainer = () => {
   };
 
   useEffect(() => {
-    dispatch(fetchListThunk());
+    dispatch(noticesActions.fetchList(dispatch));
   }, [dispatch]);
 
   return (

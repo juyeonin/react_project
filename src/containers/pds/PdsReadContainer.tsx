@@ -1,9 +1,8 @@
 import React, { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PdsRead from '../../components/pds/PdsRead';
-import { fetchOneThunk } from '../../modules/pds';
+import { pdsActions } from '../../modules/pds';
 import * as api from '../../lib/api';
-import { fetchAttachList, resetAttach } from '../../modules/pds';
 import { isAdmin as hasRoleAdmin } from '../../modules/selector';
 import { useHistory } from 'react-router-dom';
 import { RootState } from '../../modules';
@@ -27,7 +26,7 @@ const PdsReadContainer = ({ itemId }: Props) => {
   );
 
   useEffect(() => {
-    dispatch(fetchOneThunk(itemId));
+    dispatch(pdsActions.fetchPdsOne({dispatch, itemId}));
   }, [dispatch, itemId]);
 
   const onRemove = async () => {
@@ -56,7 +55,7 @@ const PdsReadContainer = ({ itemId }: Props) => {
     try {
       const response = await api.fetchAttachList(itemId);
 
-      dispatch(fetchAttachList(response.data));
+      dispatch(pdsActions.attachList(response.data));
     } catch (e) {
       throw e;
     }
@@ -66,7 +65,7 @@ const PdsReadContainer = ({ itemId }: Props) => {
     getAttachList();
 
     return () => {
-      dispatch(resetAttach());
+      dispatch(pdsActions.reset());
     };
   }, [dispatch, getAttachList]);
 
